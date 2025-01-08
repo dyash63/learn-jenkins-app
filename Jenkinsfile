@@ -47,7 +47,10 @@ pipeline {
                 }
                 }
                 steps{
-                    sh '''npm install serve
+                    sh '''
+                          npm install
+                          npx playwright install chromium
+                          npm install serve
                           node_modules/.bin/serve -s build &
                           sleep 10
                           npx playwright test
