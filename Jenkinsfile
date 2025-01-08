@@ -47,9 +47,9 @@ pipeline {
                 }
                 }
                 steps{
-                    sh ''' sudo npm install -g serve
-                           sudo serve -s build
-                           sudo npx playwright test
+                    sh '''npm install serve
+                          node_modules/.bin/serve -s build
+                          npx playwright test
                     '''
                 }
             }    
