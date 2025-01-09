@@ -41,8 +41,9 @@ pipeline {
         }
                 steps{
                     sh '''
-                            npx playwright install chromium
-                          npx playwright test --reporter=line
+                        npm install
+                        npx playwright install chromium
+                        npx playwright test --reporter=line
                     '''
                 }
                  post {
