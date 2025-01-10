@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     sshCommand = """
-                        ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} << EOF
+                        ssh -t -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} << EOF
                         echo "Connected to remote server"
                         hostname
                         uptime
