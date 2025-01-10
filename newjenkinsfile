@@ -26,11 +26,11 @@ pipeline {
                     sh """
                         ssh -tt -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} <<EOF
                         echo "Checking root filesystem usage..."
-                        USAGE=$(df -h / | tail -1 | awk '{print \$5}' | tr -d '%')
+                        USAGE=\$(df -h / | tail -1 | awk '{print \$5}' | tr -d '%')
                         if [ \$USAGE -gt 80 ]; then
-                            echo "Root filesystem usage is \$USAGE%. Performing cleanup."
+                            echo "Root filesystem usage is $USAGE%. Performing cleanup."
                         else
-                            echo "Root filesystem usage is \$USAGE%. No cleanup required."
+                            echo "Root filesystem usage is $USAGE%. No cleanup required."
                         fi
                         exit
                         EOF
