@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+    environment {
+        REMOTE_USER = 'root' 
+        REMOTE_HOST = '192.168.100.128' 
+        SSH_CREDENTIALS_ID = 'your-ssh-credentials-id' 
+    }
+    stages {
+        stage('Connect and Run Commands') {
+            steps {
+                script {
+                    sshCommand = """
+                        ssh -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} << EOF
+                        echo "Connected to remote server"
+                        hostname
+                        uptime
+                        EOF
+                    """
+                }
+                sshagent (credentials: [SSH_CREDENTIALS_ID]) {
+                    sh sshCommand
+                }
+            }
+        }
+    }
+}
