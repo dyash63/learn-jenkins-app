@@ -10,11 +10,10 @@ pipeline {
             steps {
                 script {
                     sshCommand = """
-                        ssh -tt -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST} << EOF
+                        ssh -tt -o StrictHostKeyChecking=no ${REMOTE_USER}@${REMOTE_HOST}
                         echo "Connected to remote server"
                         hostname
                         uptime
-                        EOF
                     """
                 }
                 sshagent (credentials: [SSH_CREDENTIALS_ID]) {
